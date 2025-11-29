@@ -5,7 +5,7 @@ class Multikey < Formula
     desc "Manage multiple GitHub SSH identities based on folder/repo location"
     homepage "https://github.com/Torres-Atlantic/multikey-cli"
     url "https://github.com/Torres-Atlantic/multikey-cli/archive/refs/tags/v1.0.0.tar.gz"
-    sha256 "REPLACE_WITH_ACTUAL_SHA256"
+    sha256 "d6cd0cf7147cd18b2ba54622eaecffc423f590b2ba11430c004019ec4a8da99d"
     license "MIT"
     head "https://github.com/Torres-Atlantic/multikey-cli.git", branch: "main"
   
