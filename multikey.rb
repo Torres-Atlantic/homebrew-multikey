@@ -4,22 +4,28 @@
 class Multikey < Formula
     desc "Manage multiple GitHub SSH identities based on folder/repo location"
     homepage "https://github.com/Torres-Atlantic/multikey-cli"
-    url "https://github.com/Torres-Atlantic/multikey-cli/archive/refs/tags/v1.0.0.tar.gz"
-    sha256 "d6cd0cf7147cd18b2ba54622eaecffc423f590b2ba11430c004019ec4a8da99d"
+    version "1.0.0"
     license "MIT"
-    head "https://github.com/Torres-Atlantic/multikey-cli.git", branch: "main"
   
-    depends_on "go" => :build
+    on_macos do
+      if Hardware::CPU.arm?
+        url "https://github.com/Torres-Atlantic/multikey-cli/releases/download/v1.0.0/multikey-darwin-arm64.tar.gz"
+        sha256 "a42f2b7d0f71ef600941cb47bf17eba66cb216b25d9d215dca932ee209019c29"
+      else
+        url "https://github.com/Torres-Atlantic/multikey-cli/releases/download/v1.0.0/multikey-darwin-amd64.tar.gz"
+        sha256 "1f8e1aa86e2154c38625c2687af6f94e89b899908ea95896d096349c211c0fb2"
+      end
+    end
   
     def install
-      # Build from source
-      system "make", "build"
-      bin.install "build/multikey"
+      if Hardware::CPU.arm?
+        bin.install "multikey-darwin-arm64" => "multikey"
+      else
+        bin.install "multikey-darwin-amd64" => "multikey"
+      end
     end
   
     test do
       system "#{bin}/multikey", "version"
     end
   end
-  
-  
